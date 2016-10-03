@@ -8,9 +8,6 @@ var NosBot = function ( button, outputElement ) {
 	this.outputElement = outputElement;
 	this.initializeFirebase();
 	this.bindHandlers();
-	// for( var i = 0; i < 10; i++ ) {
-	// 	this.getNewsFlash();
-	// }
 }
 
 
@@ -78,7 +75,7 @@ NosBot.prototype = {
 
 				var firstSentenceKeyKey = getRandomKey( pivotWord );
 			    var firstSentenceKey = pivotWord[ firstSentenceKeyKey ];
-			    
+
 			    var firstSentence = sentences[ firstSentenceKey ];
 			    firstSentence.key = firstSentenceKey;
 			    var firstSentenceText = firstSentence.text.slice( 0, firstSentence.text.indexOf( randomPivotKey ) );
@@ -92,9 +89,6 @@ NosBot.prototype = {
 			    var secondSentenceText = secondSentence.text.slice( secondSentence.text.indexOf( randomPivotKey ) );
 
 			    var newsFlash = firstSentenceText + secondSentenceText;
-			    // console.log( firstSentence );
-			    // console.log( secondSentence );
-			    // console.log( 'newsFlash: ' + newsFlash );
 
 			    var $outputElement = $( this.outputElement );
 			    $outputElement.empty();
