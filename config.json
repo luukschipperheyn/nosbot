@@ -1,0 +1,7 @@
+{
+    "apiKey" : "<INSERT API KEY>",
+    "authDomain" : "<INSERT AUTH DOMAIN>",
+    "databaseURL" : "<INSERT DATABASE URL>",
+    "storageBucket" : "<INSERT STORATE BUCKET>",
+    "messagingSenderId" : "<INSERT MESSAGING SENDER ID>"
+}

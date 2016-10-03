@@ -1,4 +1,6 @@
-import firebase from 'firebase';
+import firebase from 'firebase/app.js';
+import 'firebase/auth.js';
+import 'firebase/database.js';
 import $ from 'jquery';
 
 var NosBot = function ( button, outputElement ) {
@@ -55,17 +57,12 @@ NosBot.prototype = {
 	},
 
 	initializeFirebase : function () {
-		var config = {
-			apiKey: "AIzaSyBK_3dAHmEZVvUnQJzYAdxS2h_ZaT7TcHw",
-			authDomain: "nosbot-1884d.firebaseapp.com",
-			databaseURL: "https://nosbot-1884d.firebaseio.com",
-			storageBucket: "",
-			messagingSenderId: "800772766212"
-		};
-		firebase.initializeApp(config);
-    	var database = firebase.database();
-
-    	
+		$.ajax( {
+			url : '/config.json',
+			dataType : 'json'
+		} ).done( function ( config ) {
+			firebase.initializeApp(config);
+		} );
 	},
 
 	getNewsFlash : function () {
@@ -75,11 +72,13 @@ NosBot.prototype = {
 			firebase.database().ref( '/sentences' ).once( 'value' ).then( function ( snapshot ) {
 				return snapshot.val();
 			}).then( function ( sentences ) {
+				console.log( sentences );
 				var randomPivotKey = getRandomKey( pivotWords );
 				var pivotWord = pivotWords[ randomPivotKey ];
 
 				var firstSentenceKeyKey = getRandomKey( pivotWord );
 			    var firstSentenceKey = pivotWord[ firstSentenceKeyKey ];
+			    
 			    var firstSentence = sentences[ firstSentenceKey ];
 			    firstSentence.key = firstSentenceKey;
 			    var firstSentenceText = firstSentence.text.slice( 0, firstSentence.text.indexOf( randomPivotKey ) );

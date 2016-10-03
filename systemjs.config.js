@@ -17,6 +17,6 @@ System.config({
         'hbs': 'node_modules/plugin-hbs/hbs.js',
         handlebars : 'node_modules/handlebars/dist/handlebars.min.js',
         'handlebars-runtime' : 'node_modules/handlebars/dist/handlebars.runtime.min.js',
-        firebase : 'node_modules/firebase/firebase.js'
+        firebase : 'node_modules/firebase'
     }
 });

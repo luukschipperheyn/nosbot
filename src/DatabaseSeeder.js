@@ -1,5 +1,6 @@
 var firebase = require('firebase');
 var fs = require( 'fs' );
+var config = require( __dirname + '/../config.json' );
 var pivotWords = [
 	'verder',
 	'maar',
@@ -118,8 +119,8 @@ var DatabaseSeeder = function () {
 DatabaseSeeder.prototype = {
 
 	seedPivotWords : function () {
-		return this.clearPivotWords()
-			.then( this.addPivotWords.bind( this ) );
+		return this.clearPivotWords();//
+		//	.then( this.addPivotWords.bind( this ) );
 	},
 
 	clearPivotWords : function () {
@@ -139,7 +140,7 @@ DatabaseSeeder.prototype = {
 	initializeFirebase : function () {
 		firebase.initializeApp({
 		  serviceAccount: "service-account.json",
-		  databaseURL: "https://nosbot-1884d.firebaseio.com"
+		  databaseURL: config.databaseURL
 		});
     	this.database = firebase.database();
 	},
@@ -159,6 +160,7 @@ DatabaseSeeder.prototype = {
 	},
 
 	clearSentences : function () {
+		console.log( 'clearing sentences' );
 		var ref = this.database.ref( 'sentences' );
 
 		return ref.remove();
@@ -167,9 +169,9 @@ DatabaseSeeder.prototype = {
 	parseDataDir : function () {
 		var dataDir = __dirname + '/../data';
 
-		return fs.readdirSync( dataDir ).map( function ( filename ) {
+		return Promise.all( fs.readdirSync( dataDir ).map( function ( filename ) {
 			return this.parseText( dataDir, filename );
-		}.bind( this ) );
+		}.bind( this ) ) );
 	},
 
 	parseText : function ( directory, filename ) {
@@ -205,10 +207,10 @@ DatabaseSeeder.prototype = {
 			.push( sentence );
 
 		return ref.then( function () {
-				return Promise.all( sentence.pivotWords.map( function ( pivotWord ) {
-					this.database.ref( 'pivot-words/' + pivotWord ).push( ref.key );
-				}.bind ( this ) ) );
-			}.bind( this ) );
+			return Promise.all( sentence.pivotWords.map( function ( pivotWord ) {
+				this.database.ref( 'pivot-words/' + pivotWord ).push( ref.key );
+			}.bind ( this ) ) );
+		}.bind( this ) );
 	}
 
 };
