@@ -37,13 +37,6 @@ function getRandomKeyThatIsNot ( object, key ) {
 	return randomKey;
 }
 
-function timeToFrames ( hms ) {
-	var a = hms.split(':'); // split it at the colons
-	var seconds = (+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2]); 
-
-	return Math.floor( seconds * 25);
-}
-
 NosBot.prototype = {
 	bindHandlers : function () {
 		$( this.button ).on( 'click', this.handleButtonClick.bind( this ) );
@@ -80,7 +73,6 @@ NosBot.prototype = {
 			    firstSentence.key = firstSentenceKey;
 			    var firstSentenceText = firstSentence.text.slice( 0, firstSentence.text.indexOf( randomPivotKey ) );
 			    
-			    timeToFrames( firstSentence.startTime );
 
 			    var secondSentenceKeyKey = getRandomKeyThatIsNot( pivotWord, firstSentenceKeyKey );
 			    var secondSentenceKey = pivotWord[ secondSentenceKeyKey ];
@@ -97,27 +89,6 @@ NosBot.prototype = {
 			    $( newsFlashElement ).addClass( 'theme-title' );
 			    newsFlashElement.innerHTML = newsFlash;
 			    $outputElement.append( newsFlashElement );
-
-			    var avsCodeElement = document.createElement( 'pre' );
-			    $( avsCodeElement ).addClass( 'hidden' );
-			    avsCodeElement.innerHTML += 
-				    'LoadPlugin("C:\\Program Files (x86)\\AviSynth\\plugins\\ffms2.dll")\n'+
-				    'FFmpegSource2("D:\\Users\\Arvid Jense\\Desktop\\VPROhack\\intro.mp4",atrack=-1)\n'+
-					'intro = last\n'+
-					'FFmpegSource2("D:\\Users\\Arvid Jense\\Desktop\\VPROhack\\'+ firstSentence.filename +'.m4v",atrack=-1)\n'+
-					'Trim(last , ' + timeToFrames(firstSentence.startTime) +','+timeToFrames(firstSentence.endTime)+')\n'+
-					'video1 = last\n'+
-					'FFmpegSource2("D:\\Users\\Arvid Jense\\Desktop\\VPROhack\\'+ secondSentence.filename +'.m4v",atrack=-1)\n'+
-					'Trim(last , ' + timeToFrames(secondSentence.startTime) +','+timeToFrames(secondSentence.endTime)+')\n'+
-					'video2 = last\n'+
-				    'FFmpegSource2("D:\\Users\\Arvid Jense\\Desktop\\VPROhack\\outro.mp4",atrack=-1)\n'+
-					'outro = last\n'+
-					'AlignedSplice(intro,video1,video2,outro)';
-				$outputElement.append( avsCodeElement );
-
-				newsFlashElement.onclick = function () {
-					$( avsCodeElement ).toggleClass( 'hidden' );
-				};
 
 			}.bind( this ));
 		}.bind( this ) );
