@@ -1,0 +1,28 @@
+
+
+.hidden {
+	display: none;
+}
+
+.btn {
+    padding: 32px;
+    cursor: pointer;
+}
+
+.funny-bot-button {
+	position: absolute;
+
+	bottom: 32px;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+#newsflash { 
+	margin: 64px;
+	text-align: center;
+	left: 0;
+	right: 0;
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%);
+}

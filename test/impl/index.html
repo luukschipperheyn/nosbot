@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>nosbot</title>
+	<link rel="stylesheet" type="text/css" href="./css/style.css">
+	<link rel="stylesheet" type="text/css" href="./css/test.css">
+</head>
+<body class="bg-blue theme-primary">
+	<div id="newsflash"></div>
+	<button id="funny-button" class="btn bg-white c-black component-theme funny-bot-button"> <h2>zeg iets grappigs (beta)</h2> </button>
+	<script src="../../node_modules/systemjs/dist/system.src.js"></script>
+	<script src="../../systemjs.config.js"></script>
+	<script>
+
+	    System.import('../../src/NosBot').then( function ( exportedModuleContent ) {
+	        var NosBot = exportedModuleContent.default;
+	        var button = document.getElementById( 'funny-button' );
+	        var newsflash = document.getElementById( 'newsflash' );
+	        new NosBot( button, newsflash );
+	    } );
+
+	</script>
+
+</body>
+</html>

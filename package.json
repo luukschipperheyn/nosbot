@@ -1,0 +1,27 @@
+{
+  "name": "nosbot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/DatabaseSeeder.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "serve": "http-server -p 9090"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "http-server": "~0.9.0",
+    "require": "^2.4.20"
+  },
+  "dependencies": {
+    "firebase": "^3.4.0",
+    "fluent-ffmpeg": "^2.1.0",
+    "handlebars": "~4.0.5",
+    "jquery": "^3.1.0",
+    "plugin-hbs": "github:vpro/plugin-hbs",
+    "systemjs": "~0.19.26",
+    "traceur": "0.0.107"
+  }
+}
