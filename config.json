@@ -1,7 +1,7 @@
 {
-    "apiKey" : "AIzaSyC8q8hOWMG2RWyE-QDL7G2QdOkdlJOO1IA",
-    "authDomain" : "teteetetest.firebaseapp.com",
-    "databaseURL" : "https://teteetetest.firebaseio.com",
-    "storageBucket" : "teteetetest.appspot.com",
-    "messagingSenderId" : "17266975288"
+    "apiKey" : "<INSERT API KEY>",
+    "authDomain" : "<INSERT AUTH DOMAIN>",
+    "databaseURL" : "<INSERT DATABASE URL>",
+    "storageBucket" : "<INSERT STORATE BUCKET>",
+    "messagingSenderId" : "<INSERT MESSAGING SENDER ID>"
 }
